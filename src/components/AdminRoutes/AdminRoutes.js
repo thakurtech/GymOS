@@ -1,9 +1,9 @@
 import React from "react";
 import { Outlet } from "react-router-dom";
-function AdminRoutes() {
+function AdminRoutes({ children}) {
   return (
     <>
-      <Outlet />
+      {children}
     </>
   );
 }
