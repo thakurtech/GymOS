@@ -30,7 +30,7 @@ const Header = ({ toggleSidebar,sidebarCollapsed }) => {
                     <ul id="user-dropdown" className={`absolute ${userDropdownOpen ? 'block' : 'hidden'} bg-white right-4 top-14 w-28 rounded shadow-md`}>
                         <li className="mb-1 hover:bg-gray-50 text-gray-700 hover:text-gray-900"><a className="block px-5 py-2" href="#">Profile</a></li>
                         <li className="mb-1 hover:bg-gray-50 text-gray-700 hover:text-gray-900"><a className="block px-5 py-2" href="#">Settings</a></li>
-                        <li className="mb-1 hover:bg-gray-50 text-gray-700 hover:text-gray-900"><a className="block px-5 py-2" href="#">Logout</a></li>
+                        <li className="mb-1 hover:bg-gray-50 text-gray-700 hover:text-gray-900"><a className="block px-5 py-2" href="logout">Logout</a></li>
                     </ul>
                 </ul>
             </div>

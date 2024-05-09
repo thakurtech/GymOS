@@ -7,6 +7,7 @@ import AdminLoginForm from "../pages/AdminLoginForm/AdminLoginForm";
 import AdminLayout from "../components/AdminLayout/AdminLayout";
 import UserLayout from "../components/UserLayout/UserLayout";
 import Dashboard from "../pages/AdminDashboard/Dashboard";
+import LogoutService from "../services/LogoutService";
 
 function Router() {
   return (
@@ -19,11 +20,20 @@ function Router() {
           </Route>
           {/* ---------- User Routes------------------ */}
           <Route path="/user" element={<UserLayout />}>
+          <Route path="login" element={<AdminLoginForm />} />
             <Route
               path="calorie-tracker"
               element={
                 <UserRoutes>
                   <CaloriesTracker />
+                </UserRoutes>
+              }
+            />
+            <Route
+              path="logout"
+              element={
+                <UserRoutes>
+                  <LogoutService />
                 </UserRoutes>
               }
             />
@@ -35,6 +45,13 @@ function Router() {
             element={
               <AdminRoutes>
                 <Dashboard />
+              </AdminRoutes>
+            }
+          />
+          <Route path="logout"
+            element={
+              <AdminRoutes>
+                <LogoutService />
               </AdminRoutes>
             }
           />

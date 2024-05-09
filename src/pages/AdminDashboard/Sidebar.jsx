@@ -28,7 +28,7 @@ const Sidebar = ({ sidebarCollapsed}) => {
 
                     <ul className="flex flex-col gap-1 mt-2">
                         <li className="text-gray-500 hover:bg-gray-100 hover:text-gray-900">
-                            <a className="w-full flex px-4 items-center py-3" href="#">
+                            <a className="w-full flex px-4 items-center py-3" href="logout">
                                 <RiLogoutBoxRLine />
                                 <span className={`whitespace-nowrap pl-1 ${sidebarCollapsed? "hidden": "block"}`}>Logout</span>
                             </a>
