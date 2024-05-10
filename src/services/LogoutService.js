@@ -11,7 +11,7 @@ function LogoutService() {
     dispatch(setLoginTime(null));
 
   return (
-    role==="user" ? window.location.href = "/user/login" : window.location.href = "/admin/login"
+    role==="user" ? window.location.href = "/login" : window.location.href = "/login"
   )
 }
 

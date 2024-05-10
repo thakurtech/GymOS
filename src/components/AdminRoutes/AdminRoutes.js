@@ -30,7 +30,7 @@ function AdminRoutes({ children }) {
   }
  
 
-  return (checkAdminAuth() ? children : window.location.href = "/admin/login");
+  return (checkAdminAuth() ? children : window.location.href = "/login");
 
 }
 

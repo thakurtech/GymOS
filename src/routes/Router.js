@@ -8,6 +8,11 @@ import AdminLayout from "../components/AdminLayout/AdminLayout";
 import UserLayout from "../components/UserLayout/UserLayout";
 import Dashboard from "../pages/AdminDashboard/Dashboard";
 import LogoutService from "../services/LogoutService";
+import DietRecommendation from "../pages/DietRecommendation/DietRecommendationPage";
+import DietTracker from "../pages/DietTracker/DietTracker";
+import PaymentPage from "../pages/PaymentPage/PaymentPage";
+import UserDashboard from "../pages/UserDashBoard/UserDashBoard";
+import BMICalculator from "../pages/CalculateBmi/CalculateBmi";
 
 function Router() {
   return (
@@ -15,12 +20,29 @@ function Router() {
       <BrowserRouter>
         <Routes>
           {/* ------------Normal Routes------------------ */}
-          <Route path="/" element={<UserLayout />}>
-            <Route index element={<AdminLoginForm />} />
-          </Route>
+          <Route path="/login" element={<AdminLoginForm />} />
+
+
           {/* ---------- User Routes------------------ */}
           <Route path="/user" element={<UserLayout />}>
-          <Route path="login" element={<AdminLoginForm />} />
+            <Route
+              
+              path="calculate-bmi"
+              element={
+                <UserRoutes>
+                  <BMICalculator />
+                </UserRoutes>
+              }
+            />  
+            <Route
+              index
+              path="dashboard"
+              element={
+                <UserRoutes>
+                  <UserDashboard />
+                </UserRoutes>
+              }
+            />
             <Route
               path="calorie-tracker"
               element={
@@ -29,6 +51,31 @@ function Router() {
                 </UserRoutes>
               }
             />
+            <Route
+              path="diet-recommendation"
+              element={
+                <UserRoutes>
+                  <DietRecommendation />
+                </UserRoutes>
+              }
+            />
+            <Route
+              path="your-diet"
+              element={
+                <UserRoutes>
+                  <DietTracker />
+                </UserRoutes>
+              }
+            />
+            <Route
+              path="payment"
+              element={
+                <UserRoutes>
+                  <PaymentPage/>
+                </UserRoutes>
+              }
+            />
+            
             <Route
               path="logout"
               element={
@@ -40,21 +87,22 @@ function Router() {
           </Route>
           {/* ---------------Admin Routes-------------- */}
           <Route path="/admin" element={<AdminLayout />}>
-            <Route path="login" element={<AdminLoginForm />} />
-            <Route path="dashboard"
-            element={
-              <AdminRoutes>
-                <Dashboard />
-              </AdminRoutes>
-            }
-          />
-          <Route path="logout"
-            element={
-              <AdminRoutes>
-                <LogoutService />
-              </AdminRoutes>
-            }
-          />
+            <Route
+              path="dashboard"
+              element={
+                <AdminRoutes>
+                  <Dashboard />
+                </AdminRoutes>
+              }
+            />
+            <Route
+              path="logout"
+              element={
+                <AdminRoutes>
+                  <LogoutService />
+                </AdminRoutes>
+              }
+            />
           </Route>
         </Routes>
       </BrowserRouter>

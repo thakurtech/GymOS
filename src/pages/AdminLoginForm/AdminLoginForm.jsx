@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { HiMiniEye, HiMiniEyeSlash } from "react-icons/hi2";
 import { login } from "../../services/LoginService";
 import {useDispatch} from "react-redux";
-import {setLoginTime,setIsAuthenticated,setUserRole,setUserId} from "../../store/loginSlice";
+import {setLoginTime,setIsAuthenticated,setUserRole,setUserId,setToken} from "../../store/loginSlice";
 
 
 function AdminLoginForm() {
@@ -51,7 +51,8 @@ function AdminLoginForm() {
         dispatch(setLoginTime(Date.now()));
         dispatch(setIsAuthenticated(true));
         dispatch(setUserRole(role));
-        // dispatch(setUserId(msg.id));
+        dispatch(setToken(msg.tokens.access.token));
+        dispatch(setUserId(msg.user._id));
         window.location.href = "/admin/dashboard";
         
 
@@ -61,7 +62,8 @@ function AdminLoginForm() {
         dispatch(setLoginTime(Date.now()));
         dispatch(setIsAuthenticated(true));
         dispatch(setUserRole(role));
-        // dispatch(setUserId(msg.id))
+        dispatch(setToken(msg.tokens.access.token))
+        dispatch(setUserId(msg.user._id));
         window.location.href = "/user/calorie-tracker";
       }
     } else {

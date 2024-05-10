@@ -30,7 +30,7 @@ function UserRoutes({children}) {
   }
  
 
-  return (checkUserAuth() ? children : window.location.href = "/admin/login");
+  return (checkUserAuth() ? children : window.location.href = "/login");
 }
 
 export default UserRoutes
