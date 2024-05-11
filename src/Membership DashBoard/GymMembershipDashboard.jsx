@@ -29,7 +29,7 @@ export default function GymMembershipDashboard() {
     ];
 
     return (
-        <div className="max-w-6xl mx-auto p-6 bg-white shadow-md h-full">
+        <div className="max-w-4xl mx-auto p-6 bg-white shadow-md h-full">
             <h1 className="text-2xl font-bold mb-6">Gym Membership Dashboard</h1>
             <DashboardHeader />
             <MembersTable members={members} />

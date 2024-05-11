@@ -21,8 +21,46 @@ import Gallery from "../pages/Gallery/Gallery";
 import Contact from "../pages/Contact/Contact";
 import Home from "../pages/Home";
 import Signup from "../pages/Signup/Signup";
-
+import Product from "../product/Product.jsx";
+import GymMembershipDashboard from "../Membership DashBoard/GymMembershipDashboard.jsx";
+import AdminHome from "../Home.jsx";
 function Router() {
+  const data = [
+    {
+      id: "New",
+      label: "New Members",
+      value: 231,
+      color: "hsl(93, 100%, 51%)",
+    },
+    {
+      id: "Expiring",
+      label: "Expiring Subscriptions",
+      value: 505,
+      color: "hsl(358, 100%, 63%)",
+    },
+  ];
+
+  const MemberGrowth = [
+    {
+      id: "Growth",
+      data: [
+        { x: "Jan", y: 54 },
+        { x: "Feb", y: 77 },
+        { x: "Mar", y: 82 },
+      ],
+    },
+  ];
+
+  const Expences = [
+    {
+      id: "Growth",
+      data: [
+        { x: "Jan", y: 544 },
+        { x: "Feb", y: 773 },
+        { x: "Mar", y: 824 },
+      ],
+    },
+  ];
   return (
     <>
       <BrowserRouter>
@@ -101,14 +139,28 @@ function Router() {
           </Route>
           {/* ---------------Admin Routes-------------- */}
           <Route path="/admin" element={<AdminLayout />}>
-            <Route
+            {/* <Route
               path="dashboard"
               element={
                 <AdminRoutes>
                   <Dashboard />
                 </AdminRoutes>
               }
+            /> */}
+            <Route
+              path="dashboard"
+              element={
+                <AdminRoutes>
+                <AdminHome
+                  MemberGrowth={MemberGrowth}
+                  Expences={Expences}
+                  data={data}
+                />
+                </AdminRoutes>
+              }
             />
+            <Route path="products" element={<AdminRoutes><Product /></AdminRoutes>} />
+            <Route path="analytics" element={<AdminRoutes><GymMembershipDashboard /></AdminRoutes>} />
             <Route
               path="logout"
               element={

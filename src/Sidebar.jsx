@@ -32,7 +32,7 @@ const Sidebar = () => {
           }
           label="Home"
           link={
-            "/"
+            "dashboard"
           }
         />
         <MenuItem 
@@ -53,7 +53,7 @@ const Sidebar = () => {
             </svg>
           }
           label="Products"
-          link="/products"
+          link="products"
         />
         <MenuItem
           icon={
@@ -74,7 +74,7 @@ const Sidebar = () => {
           }
           label="Orders"
           badge="6"
-          link="/orders"
+          link="orders"
         />
         <MenuItem
           icon={
@@ -114,7 +114,7 @@ const Sidebar = () => {
             </svg>
           }
           label="Analytics"
-          link="/analytics"
+          link="analytics"
         />
       </div>
       <div className="mt-auto px-4 py-2">
