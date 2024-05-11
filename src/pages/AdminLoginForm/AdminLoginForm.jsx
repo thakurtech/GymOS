@@ -3,7 +3,7 @@ import { HiMiniEye, HiMiniEyeSlash } from "react-icons/hi2";
 import { login } from "../../services/LoginService";
 import {useDispatch} from "react-redux";
 import {setLoginTime,setIsAuthenticated,setUserRole,setUserId,setToken} from "../../store/loginSlice";
-
+import MessageBox from "../../components/Alert/Alert";
 
 function AdminLoginForm() {
   const dispatch=useDispatch();
@@ -13,6 +13,8 @@ function AdminLoginForm() {
   const [showPassword, setShowPassword] = useState(false);
   const [showPasswordValidation, setShowPasswordValidation] = useState(false);
   const [showEmailValidation, setShowEmailValidation] = useState(false);
+  const [alert,setAlert]=useState({type:"",msg:""});
+  const [toggle,setToggle]=useState(false);
 
 
   const handleEmailChange = (e) => {
@@ -35,9 +37,9 @@ function AdminLoginForm() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    setEmail("");
-    setPassword("");
-    setRole("");
+    // setEmail("");
+    // setPassword("");
+    // setRole("");
     // alert("Form Submited Sucessfully")
     console.log("email: ", email);
     console.log("password: ", password);
@@ -64,9 +66,14 @@ function AdminLoginForm() {
         dispatch(setUserRole(role));
         dispatch(setToken(msg.tokens.access.token))
         dispatch(setUserId(msg.user._id));
-        window.location.href = "/user/calorie-tracker";
+        window.location.href = "/user/dashboard";
       }
     } else {
+      setToggle(true);
+      // setTimeout(() => {
+      //   setToggle(false);
+      // }, 2000);
+      setAlert({type:"error",msg:"Invalid Credentials"});
       console.log(msg);
     }
   };
@@ -74,17 +81,18 @@ function AdminLoginForm() {
   // check if the email is valid using regex pattern
   const isEmailValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
   return (
-    <div className="flex items-center gap-10 flex-col justify-center w-full h-[100vh] bg-[#151C23]">
-      <h1 className="text-center font-semibold text-[#FD3D0D] text-3xl">
+    <div className="flex items-center gap-10 flex-col justify-center w-full h-[100vh] bg-black">
+      {toggle && <MessageBox toggle={setToggle}  msg={alert.msg} type={alert.type} />}
+      <h2 className="text-[35px] text-white font-bold md:text-[50px]">
         {" "}
         Gym Login{" "}
-      </h1>
+      </h2>
       <form
         onSubmit={handleSubmit}
-        className="w-3/12 mx-auto p-6 bg-zinc-100 rounded-md shadow-md"
+        className="w-3/12 mx-auto p-6 bg-[#ebedeb] rounded-md shadow-md"
       >
         <div className="mb-4">
-          <label htmlFor="email" className="block text-gray-700 font-bold mb-2">
+          <label htmlFor="email" className="block  font-bold mb-2 text-[#FD3D0D]">
             Email
           </label>
           <input
@@ -98,12 +106,12 @@ function AdminLoginForm() {
           />
         </div>
         {!isEmailValid && showEmailValidation && (
-          <p className="text-red-500 text-sm mt-2">Email must be valid</p>
+          <p className="text-red text-sm mt-2">Email must be valid</p>
         )}
         <div className="mb-4 relative">
           <label
             htmlFor="password"
-            className="block text-gray-700 font-bold mb-2"
+            className="block  font-bold mb-2 text-[#FD3D0D]"
           >
             Password
           </label>
@@ -129,12 +137,12 @@ function AdminLoginForm() {
           </button>
         </div>
         {!isPasswordValid && showPasswordValidation && (
-          <p className="text-red-500 text-sm mt-2">
+          <p className="text-red text-sm mt-2">
             Password must be at least 8 characters long.
           </p>
         )}
         <div className="mb-4">
-          <label htmlFor="role" className="block text-gray-700 font-bold mb-2">
+          <label htmlFor="role" className="block  font-bold mb-2 text-[#FD3D0D]">
             Role
           </label>
           <select
@@ -153,12 +161,13 @@ function AdminLoginForm() {
           className={`w-full py-2 px-4 rounded-md focus:outline-none ${
             isPasswordValid
               ? "bg-[#FD3D0D] text-white hover:bg-orange-600 focus:bg-orange-600"
-              : "bg-gray-400 text-gray-700 cursor-not-allowed"
+              : "bg-gray text-gray-700 cursor-not-allowed"
           }`}
           disabled={!isPasswordValid}
         >
           Submit
         </button>
+        <p className="text-center my-4">Not registered yet? <a href="signup" className="text-[#FD3D0D]">Signup</a></p>
       </form>
     </div>
   );

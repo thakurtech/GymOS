@@ -1,0 +1,10 @@
+.alert-box{
+    position:fixed;
+    width: 33%;
+    /* display:flex !important; */
+    justify-content: center;
+    align-items: center;
+
+    top:28%;
+    /* left:42%; */
+}

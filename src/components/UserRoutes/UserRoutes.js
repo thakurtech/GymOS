@@ -1,7 +1,7 @@
 import React from 'react'
 // import { Outlet } from 'react-router-dom'
 import {useSelector,useDispatch} from 'react-redux';
-import { setIsAuthenticated,setUserRole,setUserId,setLoginTime } from '../../store/loginSlice';
+import { setIsAuthenticated,setUserRole,setUserId,setLoginTime, setToken } from '../../store/loginSlice';
 import { useEffect } from 'react';
 function UserRoutes({children}) {
   const dispatch=useDispatch();
@@ -17,6 +17,8 @@ function UserRoutes({children}) {
       dispatch(setUserRole(""));
       dispatch(setUserId(""));
       dispatch(setLoginTime(null));  
+      dispatch(setToken(""));
+      
       // setIsUserAuthenticated(false);
   }
   }, []);

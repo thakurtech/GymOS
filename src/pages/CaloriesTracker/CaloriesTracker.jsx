@@ -1,13 +1,18 @@
 import React, { useState } from "react";
 import CalorieCounterService from "../../services/CalorieCounterService";
+import LoadingBar from "../../components/LoadingBar/LoadingBar";
 function CaloriesTracker() {
   const [query, setQuery] = useState("");
   const [nutritionData, setNutritionData] = useState(null);
   const [error, setError] = useState(null);
+  const [loadingToggle, setLoadingToggle] = useState(false);
 
   const fetchNutritionData = async () => {
+
     if (!query || query === "") return alert("Please enter a food item");
+    setLoadingToggle(true);
     try {
+      
       const { response, msg } = await CalorieCounterService(query);
       if (response) {
         console.log(msg);
@@ -19,6 +24,7 @@ function CaloriesTracker() {
     } catch (error) {
       setError(error.message);
     }
+    setLoadingToggle(false);
   };
 
   const handleQueryChange = (event) => {
@@ -32,6 +38,7 @@ function CaloriesTracker() {
 
   return (
     <div className="flex flex-col gap-5 items-center  p-4  h-full w-full">
+      <LoadingBar loadingToggle={loadingToggle} />
       <h1 className="text-center font-semibold text-[#FD3D0D] mb-20 text-3xl">
         {" "}
         Calorie Tracker{" "}
@@ -63,30 +70,30 @@ function CaloriesTracker() {
               key={index}
               className="bg-gray-700 text-white  bg-opacity-25 backdrop-filter backdrop-blur-md p-4 rounded-xl mb-4 shadow-lg"
             >
-              <h3 className="uppercase font-bold text-orange-600 ">
+              <h3 className="uppercase font-bold text-orange ">
                 {item.name}
               </h3>
-              <p>
+              <p className="text-black">
                 Serving Size:{" "}
-                <span className="text-orange-400"> {item.serving_size_g} g</span>{" "}
+                <span className="text-orange"> {item.serving_size_g} g</span>{" "}
               </p>
-              <p>
+              <p className="text-black">
                 Protein:{" "}
-                <span className="text-orange-400"> {item.protein_g} g</span>{" "}
+                <span className="text-orange"> {item.protein_g} g</span>{" "}
               </p>
-              <p>
+              <p className="text-black">
                 Carbohydrate:{" "}
-                <span className="text-orange-400">
+                <span className="text-orange">
                   {item.carbohydrates_total_g} g
                 </span>
               </p>
-              <p>
+              <p className="text-black">
                 Sugar:{" "}
-                <span className="text-orange-400"> {item.sugar_g} g</span>{" "}
+                <span className="text-orange"> {item.sugar_g} g</span>{" "}
               </p>
-              <p>
+              <p className="text-black">
                 Calories:{" "}
-                <span className="text-orange-400">{item.calories}</span>{" "}
+                <span className="text-orange">{item.calories}</span>{" "}
               </p>
             </div>
           ))}

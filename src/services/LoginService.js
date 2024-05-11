@@ -10,9 +10,10 @@ export const login = async (email, password, role) => {
   try {
     const res = await axios.post(url, { email, password });
     if (res.status === 200) {
+      console.log(res.data);
       return { response: true, msg: res.data };
     } else {
-      console.log(res.data.msg);
+      console.log(res.data);
       return { response: false, msg: res.data.msg };
     }
   } catch (error) {
@@ -21,10 +22,12 @@ export const login = async (email, password, role) => {
     if (error.response) {
       // The request was made and the server responded with a status code
       // that falls out of the range of 2xx
+      console.log(errorResponse.data);
 
       return { response: false, msg: errorResponse.data.msg };
     } else if (error.request) {
       // The request was made but no response was received
+      
       return { response: false, msg: "failed to fetch nutrition data" };
     } else {
       // Something happened in setting up the request that triggered an Error

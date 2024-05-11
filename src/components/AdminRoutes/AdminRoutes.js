@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 // import IsAuthenticated from "../../services/IsAuthenticated";
 import {useSelector,useDispatch} from 'react-redux';
-import { setIsAuthenticated,setUserRole,setUserId,setLoginTime } from '../../store/loginSlice';
+import { setIsAuthenticated,setUserRole,setUserId,setLoginTime,setToken } from '../../store/loginSlice';
 
 
 function AdminRoutes({ children }) {
@@ -17,7 +17,8 @@ function AdminRoutes({ children }) {
       dispatch(setIsAuthenticated(false));
       dispatch(setUserRole(""));
       dispatch(setUserId(""));
-      dispatch(setLoginTime(null));  
+      dispatch(setLoginTime(null)); 
+      dispatch(setToken("")); 
       // setIsUserAuthenticated(false);
   }
   }, []);
